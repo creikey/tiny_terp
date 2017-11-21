@@ -1,2 +1,2 @@
 # tiny_terp
-A small bytecode-based language I'm making for myself for a game engine
+A small bytecode-based language made for implementing a game engine
