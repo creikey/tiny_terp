@@ -3,6 +3,8 @@
 #include <malloc.h>
 #include <dirent.h>
 #include <stdbool.h>
+#include "bytecode.h"
+#include "memory.h"
 
 bool ends_with(const char *str, const char *suffix) {
     if (!str || !suffix)
@@ -26,6 +28,7 @@ char * get_bytecode( char * bytecode_path ) {
   char * to_return = calloc( 1, byte_size );
   rewind( bytecode_data );
   for( int i = 0; i < byte_size; i++ ) {
+typedef int size_t;
     to_return[i] = fgetc( bytecode_data );
   }
   return to_return;
@@ -33,6 +36,8 @@ char * get_bytecode( char * bytecode_path ) {
 
 void interpret( char * bytecode ) {
   size_t byte_size = strlen( bytecode );
+  memory_block * program_memory = make_memory_head( 10 );
+  debug_memory( program_memory );
   bool is_in_string = false;
   for( size_t i = 0; i < byte_size; i++ ) {
     switch( bytecode[i] ) {
