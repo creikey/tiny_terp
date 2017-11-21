@@ -1,0 +1,12 @@
+#ifndef H_BYTECODE
+#define H_BYTECODE
+
+#define END_OF_STRING  0x0000
+#define OPEN_BRACKET   0x0001
+#define CLOSE_BRACKET  0x0002
+#define IF_STATEMENT   0x0003
+#define ELSE_STATEMENT 0x0004
+#define FUNCTION       0x0005
+#define BEGIN_STRING   0x0006
+
+#endif
