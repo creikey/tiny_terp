@@ -34,6 +34,35 @@ typedef int size_t;
   return to_return;
 }
 
+int expression_interpret( char * bytecode_stream, size_t position, size_t max_file_size ) {
+  size_t expression_size = 0;
+  int expression_type = -1;
+  while( bytecode_stream[position+expression_size] != END_EXPRESSION ) {
+    expression_size += 1;
+    switch( bytecode_stream[position+expression_size] ) {
+      case GREATER_THAN:
+        expression_type = GREATER_THAN;
+        break;
+      case LESS_THAN:
+        expression_type = LESS_THAN;
+        break;
+      case EQUAL_TO:
+        expression_type = EQUAL_TO;
+        break;
+      }
+    }
+    if( expression_type == -1 ) {
+      // No expression type
+      return -2;
+    }
+    if( position+expression_size > max_file_size ) {
+      // No end of expression
+      return -1;
+    }
+  }
+  return 0;
+}
+
 void interpret( char * bytecode ) {
   size_t byte_size = strlen( bytecode );
   memory_block * program_memory = make_memory_head( 10 );
