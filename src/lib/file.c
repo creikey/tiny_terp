@@ -10,7 +10,8 @@ char * get_file( const char * file_path ) {
   to_open = fopen( file_path, "r" );
   // Checks if the file exists
   if( to_open == NULL ) {
-    error( "file was null in get_file" );
+    fatal_error( "file was null in get_file" );
+    return NULL;
   }
   // Goes to the end of the file and gets size
   fseek( to_open, 0, SEEK_END );
