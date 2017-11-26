@@ -1,6 +1,9 @@
 # Compiled file
 tiny_terp
 
+# Compiler libraries
+src/compiler/terp/*
+
 # Prerequisites
 *.d
 
