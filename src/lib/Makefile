@@ -1,5 +1,5 @@
 #Builds tiny terp libraries
-objects = error.o
+objects = error.o file.o
 output_lib=libterp.a
 include_folder=terp
 
@@ -12,6 +12,9 @@ lib: $(objects)
 
 error.o: error.c $(include_folder)/error.h
 	gcc -c error.c
+
+file.o: file.c $(include_folder)/file.h
+	gcc -c file.c
 
 clean:
 	-rm $(objects)
