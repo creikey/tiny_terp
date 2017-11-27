@@ -1,7 +1,8 @@
 #ifndef H_EXPRESSIONS
 #define H_EXPRESSIONS
 
-int parse_expression( variable_block * vars, char * byte_stream, int position );
+typedef struct _variable_block variable_block;
 
+int parse_expression( variable_block * vars, char * byte_stream, int position );
 
 #endif
