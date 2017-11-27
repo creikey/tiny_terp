@@ -1,5 +1,5 @@
 #Builds tiny terp libraries
-objects = error.o file.o
+objects = error.o file.o expressions.o variables.o
 output_lib=libterp.a
 include_folder=terp
 
@@ -9,6 +9,13 @@ lib: $(objects)
 	ar rvs $(output_lib) $(objects)
 	mv $(output_lib) terp
 	cp -r $(include_folder) ..
+
+expressions.o: expressions.c $(include_folder)/expressions.h
+	gcc -c expressions.c
+
+
+variables.o: variables.c $(include_folder)/variables.h
+	gcc -c variables.c
 
 error.o: error.c $(include_folder)/error.h
 	gcc -c error.c
