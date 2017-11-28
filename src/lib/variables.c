@@ -79,6 +79,9 @@ void * get_variable_val_int( variable_block * vars, char * var_name ) {
 void debug_variables( variable_block * vars ) {
   variable_bock * cur = vars;
   while( cur->next_variable != NULL ) {
+    if( cur->var_name == NULL ) {
+      fatal_error( "name was null" );
+    }
     if( cur->next_variable == NULL ) {
       error( "next variabe was null" );
     }
@@ -87,9 +90,6 @@ void debug_variables( variable_block * vars ) {
     }
     if(  cur->data == NULL ) {
       error( "data was null" );
-    }
-    if( cur->var_name == NULL ) {
-      fatal_erro( "name was null" );
     }
     cur = cur->next_variable;
   }
@@ -100,6 +100,6 @@ void debug_variables( variable_block * vars ) {
     error( "data was null" );
   }
   if( cur->var_name == NULL ) {
-    fatal_erro( "name was null" );
+    fatal_error( "name was null" );
   }
 }
