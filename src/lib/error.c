@@ -20,3 +20,8 @@ void print_partial_fatal_error( const char * to_print, const char * filename, in
 void end_error() {
   printf("\033[0m\n");
 }
+
+void print_message( const char * to_print, const char * filename, int line ) {
+  fprintf( stderr, "\033[1;33mnon-fatal log at %d in %s:\033[0m %s\n", line, filename, to_print );
+  return;
+}
