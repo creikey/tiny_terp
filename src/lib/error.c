@@ -31,8 +31,17 @@ void print_partial_message( const char * to_print, const char * filename, int li
   return;
 }
 
+void continue_partial_message_float( float to_print ) {
+  fprintf( stderr, "%f", to_print );
+}
+
+void continue_partial_message_integer( int to_print ) {
+  fprintf( stderr, "%d", to_print );
+  return;
+}
+
 void continue_partial_message( const char * to_print ) {
-  fprintf( stderr, "%s" );
+  fprintf( stderr, "%s", to_print );
   return;
 }
 
