@@ -17,4 +17,6 @@ void end_error();
 
 #define error(x) print_error(x, __FILE__, __LINE__ )
 
+#define capt_log(x) print_message(x, __FILE__, __LINE__ )
+
 #endif
