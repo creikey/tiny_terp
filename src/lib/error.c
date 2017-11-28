@@ -25,3 +25,8 @@ void print_message( const char * to_print, const char * filename, int line ) {
   fprintf( stderr, "\033[1;33mnon-fatal log at %d in %s:\033[0m %s\n", line, filename, to_print );
   return;
 }
+
+void print_partial_message( const char * to_print, const char * filename, int line ) {
+  fprintf( stderr, "\033[1;33mnon-fatal log at %d in %s:\033[0m %s", line, filename, to_print );
+  return;
+}
