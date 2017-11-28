@@ -73,11 +73,14 @@ void * get_variable_val_int( variable_block * vars, char * var_name ) {
   }
   if( found_var ) {
     return *(int*)cur->data;
+  } else {
+    error( "couldn't find variable" );
+    return NULL;
   }
 }
 
 void debug_variables( variable_block * vars ) {
-  variable_bock * cur = vars;
+  variable_block * cur = vars;
   while( cur->next_variable != NULL ) {
     if( cur->var_name == NULL ) {
       fatal_error( "name was null" );
