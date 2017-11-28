@@ -30,3 +30,12 @@ void print_partial_message( const char * to_print, const char * filename, int li
   fprintf( stderr, "\033[1;33mnon-fatal log at %d in %s:\033[0m %s", line, filename, to_print );
   return;
 }
+
+void continue_partial_message( const char * to_print ) {
+  fprintf( stderr, "%s" );
+  return;
+}
+
+void end_partial_message() {
+  fprintf( stderr, "\n" );
+}
