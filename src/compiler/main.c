@@ -3,8 +3,8 @@
 #include "terp/file.h"
 
 int main( int argc, char ** argv ) {
-  printf( "Hello, world\n" );
-  char * to_print = get_file( "Makefile" );
-  error( "bruh" );
-  printf( "File is: %s\n", to_print );
+  if( argv > 1 ) { 
+    char * to_read = argv[1];
+  }
+  char * to_print = get_file( to_read );
 }
