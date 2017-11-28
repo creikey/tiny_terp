@@ -19,6 +19,10 @@ void end_error();
 
 #define capt_log(x) print_message(x, __FILE__, __LINE__ )
 
-#define part_capt_log(x), print_partial_message(x, __FILE__, __LINE__ )
+#define open_capt_log(x), print_partial_message(x, __FILE__, __LINE__ )
+
+#define cont_capt_log(x), continue_partial_message(x)
+
+#define end_capt_log(), end_partial_message()
 
 #endif
