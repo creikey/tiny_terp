@@ -19,4 +19,6 @@ void end_error();
 
 #define capt_log(x) print_message(x, __FILE__, __LINE__ )
 
+#define part_capt_log(x), print_partial_message(x, __FILE__, __LINE__ )
+
 #endif
