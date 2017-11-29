@@ -12,5 +12,6 @@ int main( int argc, char ** argv ) {
   }
   char * to_print = get_file( to_read );
   printf("File is: \n%s", to_print);
+  message( "Searching for expressions...", true );
   return 0;
 }
