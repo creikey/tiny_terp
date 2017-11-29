@@ -23,6 +23,10 @@ void close_general_error();
 
 #define fatal_error(x, close ) print_fatal_error( x, __FILE__, __LINE__, close )
 
+#define CLOSE true
+
+#define OPEN false
+
 #define eg_s(x) print_general_string(x)
 
 #define eg_c(x) print_general_char(x)
