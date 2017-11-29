@@ -11,6 +11,8 @@
 #define EQUAL_TO 0x0008
 #define SET_VARIABLE 0x0009
 
+extern const int possible_bytes[];
+
 /*
 example expression
 0x001 0x003 foo 0x004 0x006 0x003 bar 0x004 0x002
