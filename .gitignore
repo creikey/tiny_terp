@@ -4,6 +4,9 @@ tiny_terp
 # Compiler libraries
 src/compiler/terp/*
 
+# Output libraries
+src/terp/*
+
 # Prerequisites
 *.d
 
