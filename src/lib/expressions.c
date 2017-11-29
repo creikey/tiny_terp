@@ -8,7 +8,7 @@
 #include "terp/bytecode.h"
 #include "terp/variables.h"
 
-int parse_expression( variable_block * vars, char * byte_stream, int position ) {
+int parse_expression( variable_block * vars, int * byte_stream, int position ) {
   int expr_type = -1;
   bool end_of_expr = false;
   int curchar = 0;
@@ -73,9 +73,9 @@ int parse_expression( variable_block * vars, char * byte_stream, int position ) 
         to_var[name_size] = '\0';
         void * var_test = get_variable_val_int( vars, to_var );
         if( var_test == NULL ) {
-          format_fatal_error( "couldn't find variable for expression, vars: " );
+          fatal_error( "couldn't find variable for expression, vars: ", false );
           debug_variables(vars);
-          end_error();
+          eg_close();
           break;
         } else {
           if( expr_type == -1 ) {
