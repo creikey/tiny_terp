@@ -73,7 +73,7 @@ int parse_expression( variable_block * vars, int * byte_stream, int position ) {
         to_var[name_size] = '\0';
         void * var_test = get_variable_val_int( vars, to_var );
         if( var_test == NULL ) {
-          fatal_error( "couldn't find variable for expression, vars: ", false );
+          fatal_error( "couldn't find variable for expression, vars: ", OPEN );
           debug_variables(vars);
           eg_close();
           break;
