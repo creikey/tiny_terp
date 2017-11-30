@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "terp/error.h"
-#include "terp/general_parse.h"
+#include "terp/parse.h"
 #include "terp/bytecode.h"
 
-int parse_file( char * in_file ) {
+int parse_file( int * in_file ) {
   if( in_file == NULL ) {
     fatal_error( "file to parse is null", true );
     return -1;
