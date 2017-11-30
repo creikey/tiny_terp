@@ -10,7 +10,7 @@ int main( int argc, char ** argv ) {
     fatal_error( "you must input a file to read" );
     return -1;
   }
-  char * to_print = get_file( to_read );
+  int * to_print = get_file( to_read );
   printf("File is: \n%s", to_print);
   message( "Searching for expressions...", true );
   return 0;
