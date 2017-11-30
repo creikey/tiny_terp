@@ -1,6 +1,12 @@
 #ifndef H_FILE
 #define H_FILE
 
-char * get_file( const char * file_path );
+typedef struct _FILE FILE;
+
+//char * get_file( const char * file_path );
+
+int * get_file_bytestream( const char * file_path );
+
+unsigned int get_file_len( FILE * in_fp );
 
 #endif
