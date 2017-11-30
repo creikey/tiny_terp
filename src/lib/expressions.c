@@ -11,14 +11,14 @@
 int parse_expression( variable_block * vars, int * byte_stream, int position ) {
   int expr_type = -1;
   bool end_of_expr = false;
-  int curchar = 0;
+  int cur_pos = 0;
   int left_var;
   int right_var;
   // For searching for vars
   bool found_var;
   // Loop for the expression
   while( end_of_expr == false ) {
-    switch( byte_stream[position+curchar] ) {
+    switch( byte_stream[position+cur_pos] ) {
       case END_EXPR:
         end_of_expr = true;
         break;
@@ -35,26 +35,26 @@ int parse_expression( variable_block * vars, int * byte_stream, int position ) {
       case BEGIN_EXPR:
         // Recursively call it
         if( expr_type == -1 ) {
-          left_var = parse_expression(vars, byte_stream, position+curchar);
+          left_var = parse_expression(vars, byte_stream, position+cur_pos);
         } else {
-          right_var = parse_expression( vars, byte_stream, position+curchar );
+          right_var = parse_expression( vars, byte_stream, position+cur_pos );
         }
       // If there's a clause to get a variable
       case GET_VARIABLE:
         // If it's found the var yet
         found_var = false;
         // The cursor that's searching for the end of the var
-        int varchar = position+curchar;
+        int varpos = position+cur_pos;
         // The starting position of the variable's string to pull
-        int varstart = position+curchar+1;
+        int varstart = position+cur_pos+1;
         // The size of the variable's string to pull
         size_t name_size = 0;
         // While it hasn't found the var
         while( found_var == false ) {
           // If it isn't a variable_start
-          if( byte_stream[varchar] != VARIABLE_START ) {
+          if( byte_stream[varpos] != VARIABLE_START ) {
             // If it's a variable end
-            if( byte_stream[varchar] == VARIABLE_END ) {
+            if( byte_stream[varpos] == VARIABLE_END ) {
               // Stop counting
               found_var = true;
             } else {
@@ -65,9 +65,14 @@ int parse_expression( variable_block * vars, int * byte_stream, int position ) {
         }
         // The variable's name soon to be filled
         char * to_var = malloc( name_size + 1 );
-        // Scroll through the variable string
+        // Scroll through the variable int stuff
         for( int i = 0; i < name_size-1; i++ ) {
-          to_var[i] = byte_stream[varstart+i];
+          if( byte_stream[varstart+i] > 256 ) {
+            fatal_error( "not a string on bytecode  ", false )
+            eg_i( cur_pos );
+            eg_close();
+          }
+          to_var[i] = (char)byte_stream[varstart+i];
         }
         // Add a null terminator
         to_var[name_size] = '\0';
@@ -86,6 +91,6 @@ int parse_expression( variable_block * vars, int * byte_stream, int position ) {
         }
         break;
     }
-    curchar += 1;
+    cur_pos += 1;
   }
 }
