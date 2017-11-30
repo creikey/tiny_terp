@@ -17,11 +17,11 @@ void print_general_int( int to_print );
 
 void close_general_error();
 
-#define message(x, close) print_message( x, __FILE__, __LINE__, close )
+#define message(x, close) print_message( x, __FILE__, __LINE__, close );
 
-#define error(x, close ) print_error( x, __FILE__, __LINE__, close )
+#define error(x, close ) print_error( x, __FILE__, __LINE__, close );
 
-#define fatal_error(x, close ) print_fatal_error( x, __FILE__, __LINE__, close )
+#define fatal_error(x, close ) print_fatal_error( x, __FILE__, __LINE__, close );
 
 #define CLOSE true
 
