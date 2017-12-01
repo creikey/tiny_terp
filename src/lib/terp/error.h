@@ -7,7 +7,9 @@ void print_fatal_error( const char * to_print, const char * filename, int line, 
 
 void print_message( const char * to_print, const char * filename, int line, bool close_message );
 
-void print_general_string( const char * to_print );
+void print_general_constant_string( const char * to_print );
+
+void print_general_string( char * to_print );
 
 void print_general_char( char to_print );
 
@@ -26,6 +28,8 @@ void close_general_error();
 #define CLOSE true
 
 #define OPEN false
+
+#define eg_cs(x) print_general_constant_string(x)
 
 #define eg_s(x) print_general_string(x)
 

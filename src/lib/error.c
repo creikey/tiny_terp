@@ -25,7 +25,11 @@ void print_message( const char * to_print, const char * filename, int line, bool
   return;
 }
 
-void print_general_string( const char * to_print ) {
+void print_general_constant_string( const char * to_print ) {
+  fprintf( stderr, "%s", to_print );
+}
+
+void print_general_string( char * to_print ) {
   fprintf( stderr, "%s", to_print );
 }
 
