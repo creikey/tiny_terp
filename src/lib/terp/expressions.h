@@ -3,6 +3,6 @@
 
 typedef struct _variable_block variable_block;
 
-int parse_expression( variable_block * vars, char * byte_stream, int position );
+int parse_expression( variable_block * vars, int * byte_stream, int position );
 
 #endif

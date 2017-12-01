@@ -75,7 +75,7 @@ void * get_variable_val_int( variable_block * vars, char * var_name ) {
     found_var = true;
   }
   if( found_var ) {
-    return *(int*)cur->data;
+    return *((int*)(cur->data));
   } else {
     error( "couldn't find variable", true );
     return NULL;
