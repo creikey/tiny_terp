@@ -1,6 +1,8 @@
 #ifndef H_ERROR
 #define H_ERROR
 
+#include <stdbool.h>
+
 void print_error( const char * to_print, const char * filename, int line, bool close_message );
 
 void print_fatal_error( const char * to_print, const char * filename, int line, bool close_message );

@@ -1,7 +1,7 @@
 #ifndef H_FILE
 #define H_FILE
 
-typedef struct _FILE FILE;
+#include <stdio.h>
 
 //char * get_file( const char * file_path );
 
