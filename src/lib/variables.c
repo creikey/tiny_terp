@@ -5,6 +5,9 @@
 #include "terp/error.h"
 #include "terp/variables.h"
 
+const char * data_types[] = {"integer","floating","strn"};
+const int amount_data_types = 3;
+
 variable_block * create_vars() {
   variable_block * to_return = malloc( sizeof *to_return );
   to_return->data = NULL;
@@ -34,7 +37,7 @@ void free_variable( variable_block * vars, char * var_name ) {
     if( strcmp(cur->var_name, var_name) == 0 ) {
       found_variable = true;
     } else {
-       error( "variable not found" );
+       error( "variable not found", true );
        return;
     }
   } else {
@@ -74,35 +77,78 @@ void * get_variable_val_int( variable_block * vars, char * var_name ) {
   if( found_var ) {
     return *(int*)cur->data;
   } else {
-    error( "couldn't find variable" );
+    error( "couldn't find variable", true );
     return NULL;
   }
 }
 
+void debug_variable( variable_block * in_var, int var_index ) {
+  // Just prints out debuggin information, stuff like name and checks for null
+  eg_cs( "-- Preparing to debug variable " );
+  if( in_var->var_name == NULL ) {
+    eg_cs("\n");
+    fatal_error( "variable name for index ", OPEN );
+    eg_i( var_index );
+    eg_cs( " is null" );
+    eg_close();
+  } else {
+    eg_s( in_var->var_name );
+    eg_cs(" --\n");
+  }
+  if( in_var->next_variable == NULL ) {
+    error( "variable block ends at variable ", OPEN );
+    eg_s( in_var->var_name );
+    eg_cs( ", index " );
+    eg_i( var_index );
+    eg_close();
+  } else {
+    eg_cs("Next variable isn't null\n");
+  }
+  if( in_var->previous_variable == NULL ) {
+    error( "previous variable for variable ", OPEN );
+    eg_s( in_var->var_name );
+    eg_cs( ", index " );
+    eg_i( var_index );
+    eg_cs( " is null" );
+    eg_close();
+  } else {
+    eg_cs("Previous variable isn't null\n");
+  }
+  if( in_var->data == NULL ) {
+    message( "data is null for variable ", OPEN );
+    eg_s( in_var->var_name );
+    eg_cs( ", index " );
+    eg_i( var_index );
+    eg_close();
+  } else {
+    if( in_var->data_type < 0 || in_var->data_type > amount_data_types-1 ) {
+      error( "data type out of range for variable ", OPEN );
+      eg_s( in_var->var_name );
+      eg_cs( ", at index " );
+      eg_i( var_index );
+      eg_close();
+    } else {
+      eg_cs("Data is of type ");
+      eg_cs(data_types[in_var->data_type]);
+    }
+  }
+}
+
 void debug_variables( variable_block * vars ) {
-  variable_block * cur = vars;
+  // The variables
+  variable_block * cur; // the cursor to debug variables from
+  int index = 0; // the index of the current variable
+  // Sets the cursor equal to the input head
+  cur = vars;
+  // Iterates through the linked list
   while( cur->next_variable != NULL ) {
-    if( cur->var_name == NULL ) {
-      fatal_error( "name was null" );
-    }
-    if( cur->next_variable == NULL ) {
-      error( "next variabe was null" );
-    }
-    if( cur->previous_variable == NULL ) {
-      error( "previous variable was null" );
-    }
-    if(  cur->data == NULL ) {
-      error( "data was null" );
-    }
+    // Debugs the current variable
+    debug_variable( cur, index );
+    // Goes to the next variable
+    index += 1;
     cur = cur->next_variable;
   }
-  if( cur->previous_variable == NULL ) {
-    error( "previous variable was null" );
-  }
-  if(  cur->data == NULL ) {
-    error( "data was null" );
-  }
-  if( cur->var_name == NULL ) {
-    fatal_error( "name was null" );
-  }
+  // Debugs the last variable;
+  debug_variable( cur, index+1 );
+  return;
 }

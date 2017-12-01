@@ -7,6 +7,9 @@ typedef enum variable_data {
   strn
 } var_type;
 
+extern const char * data_types[];
+extern const int amount_data_types;
+
 typedef struct _variable_block {
   var_type data_type;
   void * data;
