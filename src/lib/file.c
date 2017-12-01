@@ -32,7 +32,7 @@
   return to_return;
 }*/
 
-int * get_file_bytestream( const char * file_path ) {
+program_bytecode get_file_bytestream( const char * file_path ) {
   // The variables
   int * to_return; // the bytestream to return
   unsigned int file_len; // the length of the input file
@@ -54,8 +54,11 @@ int * get_file_bytestream( const char * file_path ) {
     eg_i( file_len );
     eg_close();
   }
-  // Returns the bytes read
-  return to_return;
+  // Formats data into a bytecode struct
+  program_bytecode to_format;
+  to_format.bytestream = to_return;
+  to_format.bytes_len = sizeof(int) * file_len;
+  return to_format;
 }
 
 unsigned int get_file_len( FILE * in_fp ) {
