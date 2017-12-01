@@ -35,14 +35,26 @@
 int * get_file_bytestream( const char * file_path ) {
   // The variables
   int * to_return; // the bytestream to return
-  int file_len; // the length of the input file
+  unsigned int file_len; // the length of the input file
   FILE * to_open; // the file pointer to open
+  size_t bytes_read; // the bytes read from the file
   // Opens it
   to_open = fopen( file_path, "r" );
   // Gets file length
   file_len = get_file_len( to_open );
   // Mallocs the memory needed to return
   to_return = malloc( sizeof(int) * file_len );
+  // Reads the memory
+  bytes_read = fread( to_return, sizeof(int), file_len, to_open );
+  // Checkes the bytes read
+  if( bytes_read < file_len ) {
+    error( "bytes_read is ", false );
+    eg_i( bytes_read );
+    eg_cs( " when it should be " );
+    eg_i( file_len );
+    eg_close();
+  }
+  // Returns the bytes read
   return to_return;
 }
 
