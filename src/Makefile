@@ -14,6 +14,13 @@ all:
 	mv $(lib_data_name) $(compiler_folder)
 	cd $(compiler_folder) && make
 
+debug:
+	cd $(libfolder) && make
+	echo "Removing compiler folder"
+	-rm -r $(compiler_folder)/$(lib_data_name)
+	mv $(lib_data_name) $(compiler_folder)
+	cd $(compiler_folder) && make debug
+
 clean:
 	cd $(libfolder) && make clean
 	cd $(compiler_folder) && make clean
