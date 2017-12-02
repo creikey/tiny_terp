@@ -1,15 +1,15 @@
 #ifndef H_BYTECODE
 #define H_BYTECODE
 
-#define BEGIN_EXPR 0x0001
-#define END_EXPR 0x0002
-#define VARIABLE_START 0x0003
-#define VARIABLE_END 0x0004
-#define GET_VARIABLE 0x0005
-#define GREATER_THAN 0x0006
-#define LESS_THAN 0x0007
-#define EQUAL_TO 0x0008
-#define SET_VARIABLE 0x0009
+const int BEGIN_EXPR = 0x0001;
+const int END_EXPR = 0x0002;
+const int VARIABLE_START = 0x0003;
+const int VARIABLE_END = 0x0004;
+const int GET_VARIABLE = 0x0005;
+const int GREATER_THAN = 0x0006;
+const int LESS_THAN = 0x0007;
+const int EQUAL_TO = 0x0008;
+const int SET_VARIABLE = 0x0009;
 
 extern const int possible_bytes[];
 
