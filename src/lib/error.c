@@ -2,23 +2,23 @@
 #include "terp/error.h"
 
 void print_error( const char * to_print, const char * filename, const char * in_func, int line, bool close_message ) {
-  fprintf( stderr, "\033[1;31mERROR ON LINE \033[1;33m\033[4m%d\033[0m \033[1;31m, FUNCTION %s, IN FILE \033[1;33m\033[4m%s\033[0m:\033[21;37m %s", line, in_func, filename, to_print );
+  fprintf( stderr, "\033[1;31mERROR ON LINE \033[1;33m\033[4m%d\033[0m \033[1;31m, FUNCTION \033[1;33m\033[4m%s\033[0m \033[1;31m, IN FILE \033[1;33m\033[4m%s\033[0m:\033[21;37m %s", line, in_func, filename, to_print );
   if( close_message ) {
     fprintf( stderr, "\033[0m\n");
   }
   return;
 }
 
-void print_fatal_error( const char * to_print, const char * filename, int line, bool close_message ) {
-  fprintf( stderr, "\033[1;33m\033[4m⚠ FATAL ERROR⚠ - \033[0m\033[1;31mERROR ON LINE %d IN FILE %s:\033[21;37m %s", line, filename, to_print );
+void print_fatal_error( const char * to_print, const char * filename, const char * in_func, int line, bool close_message ) {
+  fprintf( stderr, "\033[1;33m\033[4m⚠ FATAL ERROR⚠ - \033[0m\033[1;31mERROR ON LINE %d, FUNCTION %s, IN FILE %s:\033[21;37m %s", line, in_func, filename, to_print );
   if( close_message ) {
     fprintf( stderr, "\033[0m\n");
   }
   return;
 }
 
-void print_message( const char * to_print, const char * filename, int line, bool close_message ) {
-  fprintf( stderr, "\033[1;33mnon-fatal log at %d in %s:\033[0m%s", line, filename, to_print );
+void print_message( const char * to_print, const char * filename, const char * in_func, int line, bool close_message ) {
+  fprintf( stderr, "\033[1;33mnon-fatal log at %d, function %s in %s: \033[0m%s", line, in_func, filename, to_print );
   if( close_message ) {
     fprintf( stderr, "\n");
   }
@@ -58,11 +58,6 @@ void close_general_error() {
 /*void end_error() {
   printf("\033[0m\n");
 }*/
-
-
-
-
-
 /*void print_partial_message( const char * to_print, const char * filename, int line ) {
   fprintf( stderr, "\033[1;33mnon-fatal log at line %d in %s:\033[0m %s", line, filename, to_print );
   return;

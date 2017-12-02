@@ -28,4 +28,6 @@ void debug_variable( variable_block * in_var, int var_index );
 
 void debug_variables( variable_block * vars );
 
+variable_block * create_vars();
+
 #endif
