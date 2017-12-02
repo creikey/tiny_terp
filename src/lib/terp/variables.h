@@ -20,6 +20,12 @@ typedef struct _variable_block {
 
 void * get_variable_val_int( variable_block * vars, char * var_name );
 
+variable_block * create_vars();
+
+void free_variable( variable_block * vars, char * var_name );
+
+void debug_variable( variable_block * in_var, int var_index );
+
 void debug_variables( variable_block * vars );
 
 #endif

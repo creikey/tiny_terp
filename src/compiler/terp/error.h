@@ -1,42 +1,46 @@
 #ifndef H_ERROR
 #define H_ERROR
 
-void print_error( const char * to_print, const char * filename, int line );
+#include <stdbool.h>
 
-void print_fatal_error( const char * to_print, const char * filename, int line );
+void print_error( const char * to_print, const char * filename, int line, bool close_message );
 
-void print_partial_fatal_error( const char * to_print, const char * filename, int line );
+void print_fatal_error( const char * to_print, const char * filename, int line, bool close_message );
 
-void end_error();
+void print_message( const char * to_print, const char * filename, int line, bool close_message );
 
-void print_message( const char * to_print, const char * filename, int line );
+void print_general_constant_string( const char * to_print );
 
-void print_partial_message( const char * to_print, const char * filename, int line );
+void print_general_string( char * to_print );
 
-void continue_partial_message_float( float to_print );
+void print_general_char( char to_print );
 
-void continue_partial_message_integer( int to_print );
+void print_general_float( float to_print );
 
-void continue_partial_message( const char * to_print );
+void print_general_int( int to_print );
 
-void end_partial_message();
+void close_general_error();
 
-#define append_fatal_error(x) printf( x );
+#define message(x, close) print_message( x, __FILE__, __LINE__, close );
 
-#define fatal_error(x) print_fatal_error(x, __FILE__, __LINE__)
+#define error(x, close ) print_error( x, __FILE__, __LINE__, close );
 
-#define format_fatal_error(x) print_partial_fatal_error(x, __FILE__, __LINE__)
+#define fatal_error(x, close ) print_fatal_error( x, __FILE__, __LINE__, close );
 
-#define error(x) print_error(x, __FILE__, __LINE__ )
+#define CLOSE true
 
-#define capt_log(x) print_message(x, __FILE__, __LINE__ )
+#define OPEN false
 
-#define open_capt_log(x), print_partial_message(x, __FILE__, __LINE__ )
+#define eg_cs(x) print_general_constant_string(x)
 
-#define cont_capt_log(x), continue_partial_message(x)
+#define eg_s(x) print_general_string(x)
 
-#define int_capt_log(x), continue_partial_message_integer(x)
+#define eg_c(x) print_general_char(x)
 
-#define end_capt_log(), end_partial_message()
+#define eg_f(x) print_general_float(x)
+
+#define eg_i(x) print_general_int(x)
+
+#define eg_close() close_general_error()
 
 #endif

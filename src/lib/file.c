@@ -56,9 +56,24 @@ program_bytecode get_file_bytestream( const char * file_path ) {
   }
   // Formats data into a bytecode struct
   program_bytecode to_format;
-  to_format.bytestream = to_return;
+  to_format.byte_stream = to_return;
   to_format.bytes_len = sizeof(int) * file_len;
   return to_format;
+}
+
+int write_bytes_to_file( const char * in_file_path, int * bytes, int bytes_length ) {
+  // The variables
+  FILE * fp; // file pointer to write to
+  // Opens the file
+  fp = fopen( in_file_path, "w" );
+  if( fp == NULL ) {
+    fatal_error( "fp was null", CLOSE );
+  }
+  // Iterates through the files
+  for( int i = 0; i < bytes_length; i++ ) {
+
+  }
+
 }
 
 unsigned int get_file_len( FILE * in_fp ) {

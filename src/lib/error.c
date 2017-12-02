@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "terp/error.h"
 
-void print_error( const char * to_print, const char * filename, int line, bool close_message ) {
-  fprintf( stderr, "\033[1;31mERROR ON LINE \033[1;33m\033[4m%d\033[0m \033[1;31mIN FILE \033[1;33m\033[4m%s\033[0m:\033[21;37m %s", line, filename, to_print );
+void print_error( const char * to_print, const char * filename, const char * in_func, int line, bool close_message ) {
+  fprintf( stderr, "\033[1;31mERROR ON LINE \033[1;33m\033[4m%d\033[0m \033[1;31m, FUNCTION %s, IN FILE \033[1;33m\033[4m%s\033[0m:\033[21;37m %s", line, in_func, filename, to_print );
   if( close_message ) {
     fprintf( stderr, "\033[0m\n");
   }

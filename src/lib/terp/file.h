@@ -6,7 +6,7 @@
 //char * get_file( const char * file_path );
 
 typedef struct _program_bytecode {
-  int * bytestream;
+  int * byte_stream;
   unsigned int bytes_len;
 } program_bytecode;
 
