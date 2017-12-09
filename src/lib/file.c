@@ -32,7 +32,7 @@
   return to_return;
 }*/
 
-program_bytecode get_file_bytestream( const char * file_path ) {
+program_bytecode * get_file_bytestream( const char * file_path ) {
   // The variables
   int * to_return; // the bytestream to return
   unsigned int file_len; // the length of the input file
@@ -55,9 +55,9 @@ program_bytecode get_file_bytestream( const char * file_path ) {
     eg_close();
   }
   // Formats data into a bytecode struct
-  program_bytecode to_format;
-  to_format.byte_stream = to_return;
-  to_format.bytes_len = sizeof(int) * file_len;
+  program_bytecode * to_format = mallloc( sizeof *to_format );
+  to_format->byte_stream = to_return;
+  to_format->bytes_len = sizeof(int) * file_len;
   return to_format;
 }
 
