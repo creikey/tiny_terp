@@ -1,3 +1,6 @@
+# Vim files
+*.swp
+
 # Compiled file
 tiny_terp
 
