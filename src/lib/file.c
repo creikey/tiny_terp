@@ -61,13 +61,13 @@ program_bytecode get_file_bytestream( const char * file_path ) {
   return to_format;
 }
 
-int write_bytes_to_file( const char * in_file_path, int * bytes, int bytes_length ) {
+int write_bytes_to_file( const char * in_file_path, program_bytecode * code ) {
   // The variables
   FILE * fp; // file pointer to write to
   // Opens the file
   fp = fopen( in_file_path, "w" );
   if( fp == NULL ) {
-    fatal_error( "fp was null", CLOSE );
+    fatal_error( "fp was null for file ", OPEN );
   }
   // Iterates through the files
   for( int i = 0; i < bytes_length; i++ ) {
