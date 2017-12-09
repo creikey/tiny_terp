@@ -70,10 +70,11 @@ int write_bytes_to_file( const char * in_file_path, program_bytecode * code ) {
     fatal_error( "fp was null for file ", OPEN );
   }
   // Writes all integers
-  size_t errcheck = fwrite( 
-code->byte_stream, sizeof 
-*code->byte_stream, code->bytes_len, 
-fp );
+  size_t errcheck = fwrite( code->byte_stream, sizeof *code->byte_stream, code->bytes_len, fp );
+  if( errcheck != code->bytes_len ) {
+    error( "Didn't write whole bytestream" );
+    return -1;
+  }
   return 0;
 
 }
