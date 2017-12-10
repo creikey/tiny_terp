@@ -49,6 +49,8 @@ int parse_expression( variable_block * vars, int * byte_stream, int position ) {
         int varstart = position+cur_pos+1;
         // The size of the variable's string to pull
         size_t name_size = 0;
+        // Makes sure the variable isn't found
+        found_var = false;
         // While it hasn't found the var
         while( found_var == false ) {
           // If it isn't a variable_start
